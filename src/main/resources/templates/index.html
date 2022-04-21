@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Home</title>
+
+    <style>
+
+        p, td {
+            color: black;
+            text-align: center;
+            font-family: "Copperplate Gothic Light";
+        }
+
+        h1, h2 {
+            color: black;
+            text-align: center;
+            font-family: "Copperplate Gothic Bold";
+        }
+
+        table {
+            border: 1px solid black;
+            border-radius: 15px;
+        }
+    </style>
+
+    <script>
+
+        var tbltop ="<table> <tr><th>Id</th><th>Flavour</th><th>Crust</th><th>Name</th><th>Phone</th><th>Address</th><th>Created at</th></tr>"
+
+        var main = "";
+
+        var arrLength = parseInt(document.getElementById("arrLength").toString());
+
+        for (i=0; i<arrLength; i++){
+
+            main += "<tr><td th:text='${ordersArray[" + i + "].getId()}'>"+
+
+                    "</td><td th:text='${ordersArray[" + i + "].getFlavour()}'>"+
+
+                    "</td><td th:text='${ordersArray[" + i + "].getCrust()}'>"+
+
+                    "</td><td th:text='${ordersArray[" + i + "].getName()}'>"+
+
+                    "</td><td th:text='${ordersArray[" + i + "].getPhone()}'>"+
+
+                    "</td><td th:text='${ordersArray[" + i + "].getAddress()}'>"+
+
+                    "</td><td th:text='${ordersArray[" + i + "].getCreatedAt()}'>"+"</td></tr>";
+        }
+
+        var tblbottom = "</table>";
+
+        var tbl = tbltop + main + tblbottom;
+
+        document.getElementById("allOrders").innerHTML = tbl;
+
+    </script>
+
+</head>
+
+<body style="background-color: #323130">
+
+<div id='container' align="center">
+
+    <div id='mainLayout' style='background-color: #ff0404; width:800px; border: 2px solid black; border-radius: 20px'>
+
+        <div id='header' style='background-color:#ff0404'>
+
+            <h1> Pizza PKP </h1>
+
+        </div>
+
+        <div id='mainForm' style='float:right; width:75%; height:600px; text-align:center; background-color:#ffcd00;'>
+
+            <h4> New : July-Lockdown 30% off of all Orders until 31st!,
+
+                <br/> Order Now !!! </h4>
+
+            <h2> My Orders </h2>
+
+            <p> Total Order: </p> <p th:text="${ordersArrayLength}" id="arrLength" > </p>
+
+            <table>
+
+                <th:block th:each="order: ${ordersArrayList}">
+
+                    <!---<tr> <td> Order ID: </td> <td th:text="${order.getId()}"></td> </tr>
+                    <tr> <td> Flavor: </td> <td th:text="${order.getFlavour()}"></td> </tr>
+                    <tr> <td> Crust: </td> <td th:text="${order.getCrust()}"></td> </tr>
+                    <tr> <td> Name: </td> <td th:text="${order.getName()}"></td> </tr>
+                    <tr> <td> Phone Number: </td> <td th:text="${order.getPhone()}"></td> </tr>
+                    <tr> <td> Address: </td> <td th:text="${order.getAddress()}"></td></tr>
+                    <tr> <td> Order time: </td> <td th:text="${order.getCreatedAt()}"></td></tr>
+                    --->
+                </th:block>
+
+            </table>
+
+
+            <br/> <br/>
+
+        </div>
+
+        <div id='rightMenu' style='float:left; width:25%; height:600px;text-align:center; background-color:#ff9e00 ;'>
+
+            <h4 align=left style='margin-left:20px'> Popular </h4>
+
+            <img src="https://d1uz88p17r663j.cloudfront.net/resized/4274048cd5f17c49dfee280f77a3739d_Cheese-Pizza_HB-2_1500_700.jpg" style='width:100px; height:100px;' alt="cheese pizza image">
+
+            <br/> <br/>
+
+            <img src='pizza2.jpg' style='width:100px; height:100px;' alt="seafood pizza image">
+
+            <br/> <br/>
+
+            <a href='http://localhost:8080/api/v1/orders'> Visit Our API </a>
+
+        </div>
+
+        <div id='footer' style='background-color:#ff0404'>
+
+            <p> Copyright &copy Group 2 (Basyir, Muqri, Syahmi, Iskandar) </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
